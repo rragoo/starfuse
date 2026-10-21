@@ -1,6 +1,6 @@
 // Starfuse offline support: serve from cache, refresh in the background.
 // Bump CACHE when you want every player to drop their old copy at once.
-const CACHE = 'starfuse-v1';
+const CACHE = 'starfuse-v2';
 const CORE = ['./', './index.html', './manifest.webmanifest', './favicon.svg', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (e) => {
