@@ -39,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Outfit:wght@400;600;800&display=swap">
-  <script type="module" crossorigin src="./assets/index-BBbQeg4i.js"></script>
+  <script type="module" crossorigin src="./assets/index-B_xaic8N.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-BJSBMqeQ.css">
 </head>
 <body>
@@ -81,7 +81,7 @@
       <div class="discovery" id="discovery" hidden>
         <canvas id="discCv" width="112" height="112"></canvas>
         <div>
-          <span class="label">New planet!</span>
+          <span class="label" id="discLabel">New planet!</span>
           <strong id="discName"></strong>
           <span id="discFact"></span>
         </div>
@@ -99,7 +99,7 @@
           <div class="tiles">
             <button class="tile t-gold" id="boardBtn" data-action="leaderboard"><svg><use href="#i-trophy"/></svg><span>Ranks</span></button>
             <button class="tile t-pink" id="missionBtn" data-action="missions"><svg><use href="#i-flag"/></svg><span>Missions <b id="missionCount"></b></span></button>
-            <button class="tile t-mint" id="planetBtn" data-action="planetarium"><svg><use href="#i-planet"/></svg><span>Planets <b id="discCount"></b></span></button>
+            <button class="tile t-mint" id="planetBtn" data-action="planetarium"><svg><use href="#i-planet"/></svg><span><span id="collName">Planets</span> <b id="discCount"></b></span></button>
             <button class="tile t-violet" id="shopBtn" data-action="shop"><svg><use href="#i-bag"/></svg><span>Shop</span></button>
           </div>
           <div class="toggles">
@@ -207,7 +207,7 @@
       <section class="ov" id="shop" hidden>
         <div class="card tall">
           <h2>Shop</h2>
-          <p class="note">Skins and power-ups. Earn coins by playing.</p>
+          <p class="note">Themes and power-ups. Earn coins by playing.</p>
           <div class="list" id="skinList"></div>
           <div class="list" id="powerList"></div>
           <div class="list" id="productList"></div>
@@ -217,7 +217,7 @@
 
       <section class="ov" id="planetarium" hidden>
         <div class="card tall">
-          <h2>Planets</h2>
+          <h2 id="collTitle">Planets</h2>
           <p class="note" id="planetProgress"></p>
           <div class="grid" id="planetGrid"></div>
           <button class="btn ghost" id="planetBack" data-action="back">Back</button>
