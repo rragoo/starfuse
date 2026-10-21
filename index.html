@@ -2,6 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <script>
+    // If a game file fails to load (for example an old saved page after an update), reload once to
+    // fetch the current version. If it still fails, say so instead of leaving a dead Play button.
+    addEventListener('error', function (e) {
+      var t = e.target;
+      if (!t || t.tagName !== 'SCRIPT') return;
+      var retried = false;
+      try { retried = sessionStorage.getItem('sf-retry') === '1'; sessionStorage.setItem('sf-retry', '1'); } catch (err) { retried = true; }
+      if (!retried) { location.reload(); return; }
+      var show = function () {
+        var el = document.getElementById('toast');
+        if (el) { el.textContent = 'The game couldn’t load. Check your connection, then refresh the page.'; el.hidden = false; }
+      };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', show); else show();
+    }, true);
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
   <title>Starfuse</title>
   <meta name="claude:viewport-fit-sides" content="cover">
@@ -23,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Outfit:wght@400;600;800&display=swap">
-  <script type="module" crossorigin src="./assets/index-9B8GMeyc.js"></script>
+  <script type="module" crossorigin src="./assets/index-DgLigFgc.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-BJSBMqeQ.css">
 </head>
 <body>
