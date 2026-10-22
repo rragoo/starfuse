@@ -20,13 +20,17 @@ self.addEventListener('activate', (e) => {
 
 async function networkFirst(req) {
   const cache = await caches.open(CACHE);
+  // The game page is saved as './' whatever its query (challenge links carry one); other pages
+  // (stats.html) under their own path, so they never replace the game's offline copy.
+  const path = new URL(req.url).pathname;
+  const key = /\/(index\.html)?$/.test(path) ? './' : path;
   try {
     // no-cache: revalidate with the server instead of trusting the browser's 10-minute HTTP cache.
     const res = await fetch(new Request(req.url, { cache: 'no-cache', credentials: 'same-origin' }));
-    if (res.ok) cache.put('./', res.clone());
+    if (res.ok) cache.put(key, res.clone());
     return res;
   } catch {
-    return (await cache.match('./')) || Response.error();
+    return (await cache.match(key)) || Response.error();
   }
 }
 
