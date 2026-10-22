@@ -39,12 +39,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Outfit:wght@400;600;800&display=swap">
-  <script type="module" crossorigin src="./assets/index-B_xaic8N.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-BJSBMqeQ.css">
+  <script type="module" crossorigin src="./assets/index-CVIbISGF.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-wzYW_xmE.css">
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v3a5 5 0 0 1-10 0z" fill="currentColor"/><path d="M7 5H4a3 3 0 0 0 3 4M17 5h3a3 3 0 0 1-3 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M10 13h4v3h-4zM8 18h8v2H8z" fill="currentColor"/></symbol>
+    <symbol id="i-gift" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2" fill="currentColor"/><rect x="3" y="7" width="18" height="4" rx="1.5" fill="currentColor"/><path d="M12 7v13" stroke="#fff" stroke-width="2"/><path d="M12 7c-1.5-3.5-6-3.5-5 0M12 7c1.5-3.5 6-3.5 5 0" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
     <symbol id="i-planet" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="currentColor"/><ellipse cx="12" cy="12" rx="10.5" ry="3.6" transform="rotate(-22 12 12)" stroke="currentColor" stroke-width="1.8" fill="none"/></symbol>
     <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z" fill="currentColor"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
     <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 3v18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M7 4h11l-2.5 4L18 12H7z" fill="currentColor"/></symbol>
@@ -61,7 +62,7 @@
       <div class="chip">
         <span class="label">Score</span>
         <span id="score" class="big">0</span>
-        <span class="sub">Best <b id="best">0</b></span>
+        <span class="sub"><span id="bestLbl">Best</span> <b id="best">0</b></span>
         <div class="bestbar" id="bestBar" aria-hidden="true"><i id="bestFill"></i></div>
       </div>
       <div class="bubble" id="nextBubble">
@@ -96,6 +97,8 @@
             <span id="dailyMain">Daily challenge</span>
             <small id="dailySub">Same planets for everyone today</small>
           </button>
+          <button class="strip gold" id="rewardStrip" data-action="rewards" hidden><svg><use href="#i-gift"/></svg><span id="rewardStripTxt">Your daily reward is ready</span></button>
+          <button class="strip pink" id="vsStrip" data-action="acceptChallenge" hidden><svg><use href="#i-trophy"/></svg><span id="vsStripTxt"></span></button>
           <div class="tiles">
             <button class="tile t-gold" id="boardBtn" data-action="leaderboard"><svg><use href="#i-trophy"/></svg><span>Ranks</span></button>
             <button class="tile t-pink" id="missionBtn" data-action="missions"><svg><use href="#i-flag"/></svg><span>Missions <b id="missionCount"></b></span></button>
@@ -108,6 +111,7 @@
           </div>
           <div class="row">
             <button class="link" id="howBtn" data-action="howto">How to play</button>
+            <button class="link" id="rewardLink" data-action="rewards">Daily rewards</button>
             <button class="link" id="installBtn" data-action="install" hidden>Install app</button>
           </div>
         </div>
@@ -158,8 +162,13 @@
               <button class="btn sun small" type="submit">Post score</button>
             </form>
           </div>
-          <button class="btn mint" id="contBtn" data-action="continue">Keep going <small>watch a short ad</small></button>
+          <div class="trialbox" id="trialBox" hidden>
+            <p id="trialText"></p>
+            <button class="btn sun small" id="trialBuy" data-action="buySkin"></button>
+          </div>
+          <button class="btn mint" id="contBtn" data-action="continue">Keep going <small id="contSub">watch a short ad</small></button>
           <button class="btn sun" id="againBtn" data-action="again">Play again</button>
+          <button class="btn pink" id="vsBtn" data-action="challenge">Challenge a friend <small>they get the same planets</small></button>
           <div class="row">
             <button class="btn ghost small" id="dblBtn" data-action="double">2× coins (ad)</button>
             <button class="btn ghost small" id="shareBtn" data-action="share">Share</button>
@@ -174,7 +183,7 @@
           <div class="pwicon" id="gpIconBox"><svg><use id="gpIcon" href="#i-pop"/></svg></div>
           <h2 id="gpName">Pop</h2>
           <p class="note" id="gpDesc"></p>
-          <button class="btn mint" id="gpAd" data-action="powerAd">Get 1 free <small>watch a short ad</small></button>
+          <button class="btn mint" id="gpAd" data-action="powerAd">Get 1 free <small id="gpAdSub">watch a short ad</small></button>
           <button class="btn sun" id="gpBuy" data-action="powerBuy">Buy for 0 coins</button>
           <button class="btn ghost" id="gpCancel" data-action="powerCancel">Not now</button>
         </div>
@@ -217,10 +226,32 @@
 
       <section class="ov" id="planetarium" hidden>
         <div class="card tall">
-          <h2 id="collTitle">Planets</h2>
+          <h2 id="collTitle">Collection</h2>
+          <div class="tabs" id="collTabs" role="tablist" aria-label="Themes"></div>
           <p class="note" id="planetProgress"></p>
           <div class="grid" id="planetGrid"></div>
           <button class="btn ghost" id="planetBack" data-action="back">Back</button>
+        </div>
+      </section>
+
+      <section class="ov" id="reward" hidden>
+        <div class="card">
+          <h2>Daily reward</h2>
+          <p class="note" id="rewardNote"></p>
+          <ol class="cal" id="calList"></ol>
+          <button class="btn sun" id="rewardClaim" data-action="claimReward">Claim</button>
+          <button class="btn ghost" id="rewardBack" data-action="back">Later</button>
+        </div>
+      </section>
+
+      <section class="ov" id="challenge" hidden>
+        <div class="card">
+          <span class="pill vs">Challenge</span>
+          <h2 id="vsTitle">A friend challenges you!</h2>
+          <div class="final" id="vsScore">0</div>
+          <p class="note">That’s the score to beat. You get the same planets in the same order.</p>
+          <button class="btn pink" id="vsAccept" data-action="acceptChallenge">Accept challenge</button>
+          <button class="btn ghost" id="vsLater" data-action="back">Not now</button>
         </div>
       </section>
 
