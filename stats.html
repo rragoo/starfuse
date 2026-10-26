@@ -7,9 +7,9 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Starfuse stats</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <script type="module" crossorigin src="./assets/stats-MyYo1ZJp.js"></script>
+  <script type="module" crossorigin src="./assets/stats-DPQXaTWI.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/config-CYO01g_W.js">
-  <link rel="stylesheet" crossorigin href="./assets/stats-qPdcfSJi.css">
+  <link rel="stylesheet" crossorigin href="./assets/stats-DPLulh65.css">
 </head>
 <body>
   <main class="viz-root" id="app">
@@ -56,7 +56,7 @@
       </section>
 
       <div class="grid">
-        <section class="card"><h2>How long runs last</h2><p class="muted">Where players stop. Short runs mean a rough start.</p><div class="bars" id="length"></div></section>
+        <section class="card"><h2>How long runs last</h2><p class="muted">Where players stop. Short runs mean a rough start.</p><div class="bars" id="length"></div><p class="muted foot" id="quitNote"></p></section>
         <section class="card"><h2>Biggest planet in a run</h2><p class="muted">How far runs get.</p><div class="bars" id="biggest"></div></section>
         <section class="card"><h2>Where players come from</h2><p class="muted">First visits by site. “Direct” means typed in, a bookmark, or an app that hides it.</p><div class="bars" id="sources"></div></section>
         <section class="card"><h2>Where they are</h2><p class="muted">By time zone.</p><div class="bars" id="where"></div></section>
@@ -65,6 +65,12 @@
         <section class="card"><h2>Themes played</h2><div class="bars" id="themes"></div></section>
         <section class="card"><h2>Smoothness</h2><p class="muted">Frames per second runs played at. 30 on a phone usually means Low Power Mode or battery saver.</p><div class="bars" id="fps"></div><h3 class="sub">Phones only</h3><div class="bars" id="fpsPhone"></div></section>
         <section class="card"><h2>Power-ups</h2><p class="muted">Runs that used Pop, Swap or Shake before they ended, and how they did. Counted from 26 Oct.</p><div id="powers"></div></section>
+        <section class="card"><h2>Coins in and out</h2><p class="muted" id="walletNote"></p><h3 class="sub">Earned</h3><div class="bars" id="coinsIn"></div><h3 class="sub">Spent</h3><div class="bars" id="coinsOut"></div></section>
+        <section class="card"><h2>What coins buy</h2><p class="muted" id="buyNote"></p><div class="bars" id="coinBuys"></div></section>
+        <section class="card"><h2>Out of a power-up</h2><p class="muted">What players do when they tap a power-up they don’t have.</p><div class="bars" id="offers"></div></section>
+        <section class="card"><h2>Rewarded ads</h2><p class="muted">Ads players chose to watch. Each one earns money once real ads are connected.</p><div class="bars" id="ads"></div><p class="muted foot" id="adsNote"></p></section>
+        <section class="card"><h2>Rewards claimed</h2><p class="muted">How often players collect the daily login, mission and collection rewards.</p><div class="bars" id="rewards"></div></section>
+        <section class="card"><h2>Menus players open</h2><p class="muted">Share of player-days that opened each screen at least once.</p><div class="bars" id="opens"></div></section>
         <section class="card"><h2>Sharing and shop</h2><div class="bars" id="shares"></div><div class="bars" id="shop"></div></section>
       </div>
 
@@ -76,6 +82,7 @@
           <li>Browsers set to “Do Not Track” are not counted. Days are in UTC.</li>
           <li>A run that used “Keep going” counts once.</li>
           <li>Power-ups: a run counts as using them if it used one before it first ended. Ones used after “Keep going” only add to “Times used”.</li>
+          <li>Saved-up coins come from each player’s first visit of the day, and a menu counts once a day per player. Coins, ads, offers, rewards and menus count from 26 Oct.</li>
         </ul>
       </section>
     </div>
