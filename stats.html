@@ -7,9 +7,9 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Starfuse stats</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <script type="module" crossorigin src="./assets/stats-BHz8Wru2.js"></script>
+  <script type="module" crossorigin src="./assets/stats-CTg92UNQ.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/config-BziNT5vI.js">
-  <link rel="stylesheet" crossorigin href="./assets/stats-CdQLpV2K.css">
+  <link rel="stylesheet" crossorigin href="./assets/stats-qPdcfSJi.css">
 </head>
 <body>
   <main class="viz-root" id="app">
@@ -64,6 +64,7 @@
         <section class="card"><h2>Game modes</h2><div class="bars" id="modes"></div></section>
         <section class="card"><h2>Themes played</h2><div class="bars" id="themes"></div></section>
         <section class="card"><h2>Smoothness</h2><p class="muted">Frames per second runs played at. 30 on a phone usually means Low Power Mode or battery saver.</p><div class="bars" id="fps"></div><h3 class="sub">Phones only</h3><div class="bars" id="fpsPhone"></div></section>
+        <section class="card"><h2>Power-ups</h2><p class="muted">Runs that used Pop, Swap or Shake before they ended, and how they did. Counted from 26 Oct.</p><div id="powers"></div></section>
         <section class="card"><h2>Sharing and shop</h2><div class="bars" id="shares"></div><div class="bars" id="shop"></div></section>
       </div>
 
@@ -74,6 +75,7 @@
           <li>A player is a device: the same person on a phone and a laptop counts twice, and a private window counts as a new player each time.</li>
           <li>Browsers set to “Do Not Track” are not counted. Days are in UTC.</li>
           <li>A run that used “Keep going” counts once.</li>
+          <li>Power-ups: a run counts as using them if it used one before it first ended. Ones used after “Keep going” only add to “Times used”.</li>
         </ul>
       </section>
     </div>
