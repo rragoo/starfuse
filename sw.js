@@ -59,6 +59,7 @@ self.addEventListener('fetch', (e) => {
   const url = new URL(req.url);
   const font = url.host.endsWith('fonts.googleapis.com') || url.host.endsWith('fonts.gstatic.com');
   if (url.origin !== self.location.origin && !font) return; // leaderboard and other APIs: always network
+  if (url.pathname.includes('/preview/')) return; // the preview build (npm run build:preview) is never saved
   if (req.mode === 'navigate') e.respondWith(networkFirst(req));
   else if (url.pathname.includes('/assets/')) e.respondWith(cacheFirst(req));
   else e.respondWith(staleWhileRevalidate(req));
