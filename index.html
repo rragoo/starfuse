@@ -39,14 +39,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Outfit:wght@400;600;800&display=swap">
-  <script type="module" crossorigin src="./assets/index-B_UOal4-.js"></script>
-  <link rel="modulepreload" crossorigin href="./assets/config-BMn8QHfM.js">
-  <link rel="stylesheet" crossorigin href="./assets/index-oCxP6eS_.css">
+  <script type="module" crossorigin src="./assets/index-Bn9App_q.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/payments-DYUj4_zg.js">
+  <link rel="stylesheet" crossorigin href="./assets/index-DtBnenzL.css">
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v3a5 5 0 0 1-10 0z" fill="currentColor"/><path d="M7 5H4a3 3 0 0 0 3 4M17 5h3a3 3 0 0 1-3 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M10 13h4v3h-4zM8 18h8v2H8z" fill="currentColor"/></symbol>
     <symbol id="i-gift" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2" fill="currentColor"/><rect x="3" y="7" width="18" height="4" rx="1.5" fill="currentColor"/><path d="M12 7v13" stroke="#fff" stroke-width="2"/><path d="M12 7c-1.5-3.5-6-3.5-5 0M12 7c1.5-3.5 6-3.5 5 0" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.6L12 17.5l-5.9 3.2 1.2-6.6-4.8-4.6 6.6-.9z" fill="currentColor"/></symbol>
     <symbol id="i-planet" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="currentColor"/><ellipse cx="12" cy="12" rx="10.5" ry="3.6" transform="rotate(-22 12 12)" stroke="currentColor" stroke-width="1.8" fill="none"/></symbol>
     <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z" fill="currentColor"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
     <symbol id="i-flag" viewBox="0 0 24 24"><path d="M6 3v18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M7 4h11l-2.5 4L18 12H7z" fill="currentColor"/></symbol>
@@ -125,6 +126,7 @@
           <div class="tiles">
             <button class="tile t-gold" id="boardBtn" data-action="leaderboard"><svg><use href="#i-trophy"/></svg><span>Ranks</span></button>
             <button class="tile t-pink" id="missionBtn" data-action="missions"><svg><use href="#i-flag"/></svg><span>Missions <b id="missionCount"></b></span></button>
+            <button class="tile t-sky" id="passBtn" data-action="pass"><svg><use href="#i-star"/></svg><span>Pass <b id="passLvl"></b></span></button>
             <button class="tile t-mint" id="planetBtn" data-action="planetarium"><svg><use href="#i-planet"/></svg><span><span id="collName">Planets</span> <b id="discCount"></b></span></button>
             <button class="tile t-violet" id="shopBtn" data-action="shop"><svg><use href="#i-bag"/></svg><span>Shop</span></button>
           </div>
@@ -179,10 +181,11 @@
             <div><span class="label">Combo</span><b id="fCombo">x1</b></div>
             <div><span class="label">Coins</span><b id="fCoins">+0</b></div>
           </div>
+          <p class="note passline" id="passLine" hidden></p>
           <div class="rankbox" id="rankBox" hidden>
             <p id="rankText"></p>
             <form class="nameform" id="nameFormOver" hidden>
-              <input id="nameOver" maxlength="16" placeholder="Your name" autocomplete="nickname" aria-label="Your name for the leaderboard">
+              <input id="nameOver" maxlength="32" placeholder="Your name" autocomplete="nickname" aria-label="Your name for the leaderboard">
               <button class="btn sun small" type="submit">Post score</button>
             </form>
           </div>
@@ -214,6 +217,7 @@
           <button class="btn mint" id="gpAd" data-action="powerAd">1 free a day <small id="gpAdSub">watch a short ad</small></button>
           <button class="btn sun" id="gpBuy" data-action="powerBuy">Buy for 0 coins</button>
           <p class="note" id="gpHave"></p>
+          <button class="btn pink" id="gpStore" data-action="powerStore" hidden></button>
           <button class="btn ghost" id="gpCancel" data-action="powerCancel">Not now</button>
         </div>
       </section>
@@ -225,7 +229,7 @@
           <ol class="board" id="boardList"></ol>
           <p class="myname" id="myName" hidden>Playing as <b id="myNameText"></b><button type="button" class="textbtn" data-action="editName">Change</button></p>
           <form class="nameform" id="nameFormBoard" hidden>
-            <input id="nameBoard" maxlength="16" placeholder="Pick a name for the ranks" autocomplete="nickname" aria-label="Your name for the leaderboard">
+            <input id="nameBoard" maxlength="32" placeholder="Pick a name for the ranks" autocomplete="nickname" aria-label="Your name for the leaderboard">
             <button class="btn sun small" type="submit">Save</button>
           </form>
           <button class="btn pink" id="boardPlayBtn" data-action="daily">Play today’s challenge</button>
@@ -235,9 +239,11 @@
 
       <section class="ov" id="missions" hidden>
         <div class="card">
-          <h2>Today’s missions</h2>
+          <h2>Missions</h2>
+          <div class="tabs" id="missionTabs" role="tablist" aria-label="Missions"></div>
           <p class="note" id="missionNote">New missions every day.</p>
           <ul class="missions" id="missionList"></ul>
+          <ul class="missions" id="achList" hidden></ul>
           <button class="btn pink" id="missionPlay" data-action="play">Play</button>
           <button class="btn ghost" id="missionBack" data-action="back">Back</button>
         </div>
@@ -246,11 +252,36 @@
       <section class="ov" id="shop" hidden>
         <div class="card tall">
           <h2>Shop</h2>
-          <p class="note">Themes and power-ups. Earn coins by playing.</p>
+          <div class="tabs" id="shopTabs" role="tablist" aria-label="Shop sections"></div>
+          <p class="note" id="shopNote"></p>
           <div class="list" id="skinList"></div>
           <div class="list" id="powerList"></div>
           <div class="list" id="productList"></div>
           <button class="btn ghost" id="shopBack" data-action="back">Back</button>
+        </div>
+      </section>
+
+      <section class="ov" id="pass" hidden>
+        <div class="card tall">
+          <h2>Star Pass</h2>
+          <p class="note" id="passSeason"></p>
+          <div class="passbar" role="progressbar" id="passBar"><i id="passFill"></i></div>
+          <p class="note" id="passXp"></p>
+          <button class="btn sun" id="passClaim" data-action="claimPass" data-arg="all" hidden></button>
+          <button class="btn pink" id="passBuy" data-action="buyProduct" data-arg="star_pass" hidden></button>
+          <div class="passhead" aria-hidden="true"><span>Level</span><span>Free</span><span>Premium</span></div>
+          <ol class="passlist" id="passList"></ol>
+          <button class="btn ghost" id="passBack" data-action="back">Back</button>
+        </div>
+      </section>
+
+      <section class="ov" id="starter" hidden>
+        <div class="card">
+          <h2>Starter bundle</h2>
+          <p class="note">A one-time deal for new players. It stays in the shop if you’d rather wait.</p>
+          <ul class="bundle" id="starterList"></ul>
+          <button class="btn pink" id="starterBuy" data-action="buyProduct" data-arg="starter"></button>
+          <button class="btn ghost" id="starterNo" data-action="back">No thanks</button>
         </div>
       </section>
 
