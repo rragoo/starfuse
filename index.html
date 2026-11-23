@@ -29,6 +29,7 @@
       <div class="wrap">
         <a class="brand" href="./"><img src="./img/icon-256.webp" alt="" width="40" height="40"><span>Starfuse</span></a>
         <nav class="nav" aria-label="Site">
+          <a class="opt" href="#trailer">Trailer</a>
           <a class="opt" href="#how">How it plays</a>
           <a class="opt" href="#themes">Themes</a>
           <a class="opt" href="#features">Features</a>
@@ -49,7 +50,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="11" r="3.2" fill="#ffb21f"/><path d="M10 18.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             <span><small>Coming soon to the</small>App Store</span>
           </span>
-          <a class="btn ghost" href="#how">See how it plays</a>
+          <a class="btn ghost" href="#trailer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>Watch the trailer</a>
         </div>
         <p class="devices">For iPhone and iPad.</p>
       </div>
@@ -61,6 +62,24 @@
   </div>
 
   <main id="main">
+    <!-- The 30-second trailer (made in reel/, README "The trailer"). Served from the site itself, and only loaded once
+         someone presses play. -->
+    <section class="block wrap" id="trailer">
+      <p class="kicker">Trailer</p>
+      <h2>Thirty seconds of Starfuse</h2>
+      <p class="intro">From a speck of stardust to a supernova, a six-link combo and every theme. Turn the sound on.</p>
+      <div class="reel">
+        <video id="reelVideo" preload="none" playsinline poster="./img/trailer-poster.webp" width="1920" height="1080"
+          aria-label="The Starfuse trailer: planets fuse from Stardust to the Sun, a game on an iPhone, and the nine themes.">
+          <source src="./video/starfuse-trailer.mp4" type="video/mp4">
+        </video>
+        <button class="play" type="button" id="reelPlay">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>
+          <span>Play the trailer<small>0:30 · sound on</small></span>
+        </button>
+      </div>
+    </section>
+
     <section class="block wrap" id="how">
       <p class="kicker">How it plays</p>
       <h2>Easy to start. Hard to put down.</h2>
@@ -188,6 +207,16 @@
         ' in Starfuse and dares you to beat it. Starfuse is coming soon to the App Store.');
       document.getElementById('challenge').hidden = false;
       history.replaceState(null, '', location.pathname + location.hash);
+    })();
+    // The trailer: the poster and a play button until someone presses play, then the browser's own controls.
+    (() => {
+      const video = document.getElementById('reelVideo'), play = document.getElementById('reelPlay');
+      play.addEventListener('click', () => {
+        video.controls = true;
+        play.hidden = true;
+        video.play().catch(() => { video.controls = false; play.hidden = false; });
+      });
+      video.addEventListener('ended', () => { video.controls = false; video.load(); play.hidden = false; }); // back to the poster
     })();
     // The themes showcase: one phone, nine themes. Captures of the game in site/img/themes (README, "The website").
     (() => {
