@@ -1,0 +1,4 @@
+# The test build of the game (preview/) and the owner's stats page aren't for search engines.
+User-agent: *
+Disallow: /preview/
+Disallow: /stats.html

@@ -3,47 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Starfuse support</title>
+  <title>Support · Starfuse</title>
   <meta name="description" content="Help with Starfuse: how to reach us, saves, the leaderboard, ads and privacy.">
+  <meta name="theme-color" content="#7b5cff">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Outfit:wght@400;600;800&display=swap">
-  <style>
-    :root { --ink: #2a2257; --dim: #6d679c; --violet: #7b5cff; --soft: #f4f1ff; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; padding: 24px 16px 48px; color: var(--ink); background: #ebe4ff;
-      background: linear-gradient(165deg, #d6efff 0%, #ebe4ff 50%, #ffe4ef 100%) fixed;
-      font: 16px/1.6 "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
-    }
-    main { max-width: 720px; margin: 0 auto; padding: 28px 24px; border-radius: 26px; background: #fff; box-shadow: 0 10px 30px rgba(80, 60, 170, .16); }
-    h1, h2 { font-family: "Lilita One", "Arial Rounded MT Bold", system-ui, sans-serif; font-weight: 400; line-height: 1.15; }
-    h1 { margin: 0 0 8px; font-size: 36px; color: var(--violet); }
-    h2 { margin: 28px 0 6px; font-size: 22px; }
-    .contact { padding: 16px 20px; border-radius: 16px; background: var(--soft); }
-    .contact a { font-weight: 800; overflow-wrap: anywhere; }
-    a { color: var(--violet); text-underline-offset: 3px; }
-    .back { display: inline-block; margin-top: 28px; font-weight: 600; }
-  </style>
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="canonical" href="https://starfuse.app/support.html">
+  <link rel="stylesheet" href="./site.css">
 </head>
-<body>
-  <main>
-    <h1>Starfuse support</h1>
-    <p>Drop planets into a jar. Two of the same planet fuse into the next one, from Stardust up to the Sun.</p>
+<body class="on-light">
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="./img/icon-256.webp" alt="" width="40" height="40"><span>Starfuse</span></a>
+      <nav class="nav" aria-label="Site"><a href="./">Home</a><a href="./privacy.html">Privacy</a></nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <h1>Support</h1>
+    <p class="lead">Drop planets into a jar. Two of the same planet fuse into the next one, from Stardust up to the Sun.</p>
 
     <div class="contact">
-      <p style="margin: 0">Questions, bugs, a name on the ranks that shouldn’t be there, or an ad that looked wrong:
-        write to <a href="mailto:starfuse@example.com">starfuse@example.com</a>. We read every message.</p>
+      <p>Questions, bugs, a name on the ranks that shouldn’t be there, or an ad that looked wrong: write to
+        <a href="mailto:starfuse@example.com">starfuse@example.com</a>. We read every message.</p>
     </div>
+
+    <h2>Which devices does it run on?</h2>
+    <p>iPhone and iPad with iOS 15 or later. Starfuse is coming soon to the App Store.</p>
 
     <h2>How do I play?</h2>
     <p>Slide your finger to aim and lift it to drop the planet. Two matching planets fuse into a bigger one. The run
-      ends when a planet stays above the danger line near the top for 3 seconds. “How to play” on the menu shows it all again.</p>
+      ends when a planet stays above the danger line near the top for 3 seconds. “How to play” on the menu shows it all
+      again.</p>
 
     <h2>My progress is gone</h2>
-    <p>Your saved game lives on your device only. Deleting the app, or clearing the website’s data in your browser,
-      removes it, and there’s no online copy to restore yet. The app and the website keep separate saves.</p>
+    <p>Your saved game lives on your device only. Deleting the app removes it, and there’s no online copy to restore
+      yet.</p>
 
     <h2>How do I change my leaderboard name?</h2>
     <p>Open Ranks and tap “Change” under the list. Names that break the rules are refused.</p>
@@ -53,8 +48,8 @@
       report and remove names that break the rules. You can also email us.</p>
 
     <h2>An ad looked wrong</h2>
-    <p>In the app, open Help &amp; privacy on the menu and tap “Report an ad”, or email us with when you saw it.
-      Ads only play when you choose to watch one.</p>
+    <p>Open Help &amp; privacy on the game’s menu and tap “Report an ad”, or email us with when you saw it. Ads only
+      play when you choose to watch one.</p>
 
     <h2>Ad and tracking choices</h2>
     <p>On iPhone and iPad: Settings › Privacy &amp; Security › Tracking. In the EU, the UK and Switzerland, “Ad privacy”
@@ -64,9 +59,15 @@
     <p>Starfuse doesn’t sell anything for real money yet. Coins, themes and power-ups are all earned by playing.</p>
 
     <h2>Privacy</h2>
-    <p>Read the <a href="./privacy.html">privacy policy</a> to see what the game collects and how to have it removed.</p>
-
-    <a class="back" href="./">Play Starfuse</a>
+    <p>Read the <a href="./privacy.html">privacy policy</a> to see what the app collects and how to have it removed.</p>
   </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="./img/icon-256.webp" alt="" width="32" height="32"><span>Starfuse</span></a>
+      <nav aria-label="Legal and help"><a href="./privacy.html">Privacy policy</a><a href="./support.html">Support</a></nav>
+      <p>© 2026 Starfuse</p>
+    </div>
+  </footer>
 </body>
 </html>
