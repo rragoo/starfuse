@@ -102,13 +102,23 @@ p { margin: 0; }
 .challenge b { color: var(--violet); }
 .challenge .trophy { flex: none; font-size: 26px; }
 
-/* A phone with a screenshot: the frame is CSS, the picture a real capture of the game. */
+/* A phone with a screenshot: the frame and the Dynamic Island are CSS, the picture a real capture of the game at
+   iPhone 15 size (393 x 852, with the room the app leaves for the island and the home bar). Pictures stack, so the
+   themes showcase can cross-fade between them. */
 .phone {
-  position: relative; width: min(300px, 74vw); aspect-ratio: 390 / 844; margin-inline: auto;
-  padding: 10px; border-radius: 46px; background: #120d2e;
-  box-shadow: 0 30px 60px rgba(20, 8, 70, .35), inset 0 0 0 2px rgba(255, 255, 255, .12);
+  /* A 3.2% bezel (margins are a share of the width on every side) around a 393:852 screen: 1 : 2.093 overall. */
+  position: relative; width: min(300px, 74vw); aspect-ratio: 1000 / 2093; margin-inline: auto; flex: none;
+  border-radius: 48px; background: #120d2e;
+  box-shadow: 0 30px 60px rgba(20, 8, 70, .35), inset 0 0 0 2px rgba(255, 255, 255, .14);
 }
-.phone img { width: 100%; height: 100%; object-fit: cover; border-radius: 37px; background: #ebe4ff; }
+.phone::after { /* the Dynamic Island, in the room the app leaves above the game */
+  content: ""; position: absolute; z-index: 2; top: 3.3%; left: 50%; width: 30%; height: 3.4%;
+  transform: translateX(-50%); border-radius: 999px; background: #120d2e;
+}
+.phone img {
+  position: absolute; top: 0; left: 0; margin: 3.2%; width: 93.6%; height: auto; aspect-ratio: 393 / 852; max-width: none;
+  object-fit: cover; border-radius: 40px; background: #ebe4ff;
+}
 .hero .phone { transform: rotate(3deg); }
 .hero-art { position: relative; }
 .hero-art .planets {
@@ -149,10 +159,49 @@ section.block { padding: 88px 0 0; }
 .feature h3 { margin-top: 16px; font-size: 24px; }
 .feature p { margin-top: 8px; color: var(--dim); }
 
-.shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 44px; }
-.shots figure { margin: 0; }
-.shots .phone { width: 100%; max-width: 280px; }
-.shots figcaption { margin-top: 16px; text-align: center; font-weight: 600; color: var(--dim); }
+/* ---------- themes showcase ---------- */
+/* Registered, so the section's colors glide from one theme to the next (index.html sets them per theme). */
+@property --tint { syntax: "<color>"; inherits: true; initial-value: #e9e4ff; }
+@property --accent { syntax: "<color>"; inherits: true; initial-value: #7b5cff; }
+.themes { transition: --tint .7s ease, --accent .7s ease; }
+.showcase {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 48px; align-items: center; margin-top: 40px;
+  padding: 44px clamp(20px, 4vw, 56px); border-radius: 40px; box-shadow: var(--shadow);
+  background:
+    radial-gradient(60% 80% at 22% 40%, rgba(255, 255, 255, .85), transparent 70%),
+    radial-gradient(50% 60% at 100% 100%, rgba(255, 255, 255, .5), transparent 70%),
+    var(--tint);
+}
+.stage { display: flex; align-items: center; gap: 18px; }
+.stage .phone { width: 290px; touch-action: pan-y; }
+.stage .phone img { opacity: 0; transform: scale(1.025); transition: opacity .5s ease, transform .7s ease; }
+.stage .phone img.on { opacity: 1; transform: none; }
+.arrow {
+  display: grid; place-items: center; flex: none; width: 48px; height: 48px; border: 0; border-radius: 50%;
+  color: var(--accent); background: #fff; box-shadow: 0 6px 16px rgba(40, 20, 120, .14); cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+}
+.arrow:hover { transform: scale(1.06); box-shadow: 0 8px 20px rgba(40, 20, 120, .2); }
+.arrow svg { width: 22px; height: 22px; }
+.picker { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.picker button {
+  display: flex; align-items: center; gap: 10px; min-width: 0; padding: 7px 12px 7px 7px; border: 0; border-radius: 18px;
+  font: 700 15px/1.2 var(--body); color: var(--ink); text-align: left; background: rgba(255, 255, 255, .62); cursor: pointer;
+  box-shadow: inset 0 0 0 2px transparent; transition: background .2s, box-shadow .2s, transform .15s;
+}
+.picker button:hover { background: rgba(255, 255, 255, .9); }
+.picker button img { flex: none; width: 40px; height: 40px; border-radius: 50%; background: #fff; }
+.picker button[aria-selected="true"] { background: #fff; box-shadow: inset 0 0 0 2.5px var(--accent), 0 8px 18px rgba(40, 20, 120, .12); }
+.picker button:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+.about { margin-top: 22px; padding: 22px 24px 20px; border-radius: 26px; background: #fff; box-shadow: 0 10px 28px rgba(40, 20, 120, .08); }
+.about h3 { font-size: clamp(28px, 3vw, 36px); color: var(--accent); }
+.about p { margin-top: 6px; color: var(--dim); }
+.chainimg { width: 100%; margin-top: 16px; }
+.timer { height: 4px; margin-top: 16px; border-radius: 4px; background: var(--line); overflow: hidden; transition: opacity .3s; }
+.timer i { display: block; width: 0; height: 100%; background: var(--accent); }
+.timer i.run { animation: themeTimer linear forwards; }
+.manual .timer { opacity: 0; }
+@keyframes themeTimer { to { width: 100%; } }
 
 .closing {
   margin-top: 96px; padding: 48px 32px; border-radius: 36px; text-align: center; color: #fff;
@@ -186,15 +235,26 @@ section.block { padding: 88px 0 0; }
   .steps, .features { grid-template-columns: 1fr 1fr; }
   .chain { grid-template-columns: 1fr; text-align: center; }
   .chain ol { justify-content: center; }
+  /* The showcase stacks: the phone, then the picker as one sideways-scrolling row, then the theme's card. */
+  .showcase { grid-template-columns: minmax(0, 1fr); gap: 28px; padding: 32px 0 24px; }
+  .stage { justify-content: center; }
+  .picker {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    padding: 4px 20px 6px; scroll-padding-inline: 20px;
+  }
+  .picker::-webkit-scrollbar { display: none; }
+  .picker button { flex: none; scroll-snap-align: center; }
+  .about { margin: 18px 20px 0; text-align: center; }
 }
 @media (max-width: 620px) {
   body { font-size: 16px; }
   .nav a { padding: 6px 9px; font-size: 14px; }
   .nav .opt { display: none; }
   .steps, .features { grid-template-columns: 1fr; }
-  .shots { grid-template-columns: 1fr; gap: 36px; }
-  .shots .phone { max-width: 260px; }
   section.block { padding-top: 64px; }
+  .stage { gap: 8px; }
+  .stage .phone { width: min(250px, 62vw); }
+  .arrow { width: 40px; height: 40px; }
   .chain { padding: 24px 18px; }
   .closing { padding: 40px 20px; }
 }

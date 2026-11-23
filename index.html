@@ -30,6 +30,7 @@
         <a class="brand" href="./"><img src="./img/icon-256.webp" alt="" width="40" height="40"><span>Starfuse</span></a>
         <nav class="nav" aria-label="Site">
           <a class="opt" href="#how">How it plays</a>
+          <a class="opt" href="#themes">Themes</a>
           <a class="opt" href="#features">Features</a>
           <a href="./support.html">Support</a>
         </nav>
@@ -54,7 +55,7 @@
       </div>
       <div class="hero-art">
         <img class="planets" src="./img/planets-arc.webp" alt="" width="720" height="1106">
-        <div class="phone"><img src="./img/shot-play.webp" alt="A game of Starfuse: planets piled in a glass jar, with Jupiter and Saturn at the bottom and Mercury about to drop." width="580" height="1256"></div>
+        <div class="phone"><img src="./img/themes/cosmos.webp" alt="A game of Starfuse on an iPhone: planets piled in a glass jar, with Jupiter and Saturn at the bottom and the Moon about to drop." width="560" height="1214"></div>
       </div>
     </div>
   </div>
@@ -83,6 +84,43 @@
       </div>
     </section>
 
+    <!-- Nine themes, one phone: the picker (or a swipe, or the arrows) switches the screenshot, the colors and the
+         eleven characters. It moves on by itself while it's on screen, until someone picks a theme. -->
+    <section class="block wrap themes" id="themes">
+      <p class="kicker">Themes</p>
+      <h2>Play it in different themes</h2>
+      <p class="intro">Same planets, same rules, a whole new look. Unlock a theme with coins you earn by playing, or try any of
+        them for a run first.</p>
+      <div class="showcase">
+        <div class="stage">
+          <button class="arrow" type="button" id="themePrev" aria-label="Previous theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <div class="phone" id="themePhone" role="tabpanel" aria-labelledby="themeName">
+            <img class="shot on" src="./img/themes/cosmos.webp" alt="Starfuse in the Cosmos theme: real planets piled in the jar." width="560" height="1214" loading="lazy">
+          </div>
+          <button class="arrow" type="button" id="themeNext" aria-label="Next theme"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+        <div class="theme-info">
+          <div class="picker" id="themePicker" role="tablist" aria-label="Themes">
+            <button type="button" role="tab" aria-selected="true" aria-controls="themePhone" data-theme="0"><img src="./img/themes/cosmos-icon.webp" alt="" width="48" height="48">Cosmos</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="themePhone" data-theme="1" tabindex="-1"><img src="./img/themes/candy-icon.webp" alt="" width="48" height="48">Candy Orbit</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="themePhone" data-theme="2" tabindex="-1"><img src="./img/themes/squishies-icon.webp" alt="" width="48" height="48">Squishies</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="themePhone" data-theme="3" tabindex="-1"><img src="./img/themes/plushies-icon.webp" alt="" width="48" height="48">Plushies</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="themePhone" data-theme="4" tabindex="-1"><img src="./img/themes/animals-icon.webp" alt="" width="48" height="48">Animal Pals</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="themePhone" data-theme="5" tabindex="-1"><img src="./img/themes/axolotls-icon.webp" alt="" width="48" height="48">Axolotls</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="themePhone" data-theme="6" tabindex="-1"><img src="./img/themes/pixel-icon.webp" alt="" width="48" height="48">Pixel Mine</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="themePhone" data-theme="7" tabindex="-1"><img src="./img/themes/fruits-icon.webp" alt="" width="48" height="48">Fruit Basket</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="themePhone" data-theme="8" tabindex="-1"><img src="./img/themes/squeeze-icon.webp" alt="" width="48" height="48">Squeeze Balls</button>
+          </div>
+          <div class="about">
+            <h3 id="themeName">Cosmos</h3>
+            <p id="themeDesc">The real Solar System, from Stardust all the way to the Sun.</p>
+            <img class="chainimg" id="themeChain" src="./img/themes/cosmos-chain.webp" alt="The eleven Cosmos characters, smallest to biggest." width="880" height="80" loading="lazy">
+            <div class="timer" aria-hidden="true"><i id="themeTimer"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="block wrap" id="features">
       <p class="kicker">What’s inside</p>
       <h2>Something new every day</h2>
@@ -99,8 +137,8 @@
         </div>
         <div class="feature" style="--c: var(--violet)">
           <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-1 1.5-2.1-.6-1.2.2-2.4 1.6-2.4H18a3 3 0 0 0 3-3A8.6 8.6 0 0 0 12 3z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="7.5" cy="11" r="1.5" fill="currentColor"/><circle cx="11" cy="7.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="8.5" r="1.5" fill="currentColor"/></svg></div>
-          <h3>Nine themes</h3>
-          <p>Cosmos, Candy Orbit, Squishies, Plushies, Animal Pals, Axolotls, Pixel Mine, Fruit Basket and Squeeze Balls.</p>
+          <h3>Collect them all</h3>
+          <p>Discover every character in every theme for your Planetarium, with a coin bonus for each finished set.</p>
         </div>
         <div class="feature" style="--c: var(--sky)">
           <div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
@@ -117,25 +155,6 @@
           <h3>Made to feel good</h3>
           <p>Squishy landings, a little buzz on every fusion, and music that builds as the jar fills up.</p>
         </div>
-      </div>
-    </section>
-
-    <section class="block wrap" id="screens">
-      <p class="kicker">A look inside</p>
-      <h2>Small jar. Big universe.</h2>
-      <div class="shots">
-        <figure>
-          <div class="phone"><img src="./img/shot-play.webp" alt="Planets piled in the jar in the Cosmos theme." width="580" height="1256" loading="lazy"></div>
-          <figcaption>Fuse your way to the Sun</figcaption>
-        </figure>
-        <figure>
-          <div class="phone"><img src="./img/shot-theme.webp" alt="The same game in the Plushies theme: pandas, a koala, piggies and kittens fusing in the jar." width="580" height="1256" loading="lazy"></div>
-          <figcaption>Play it in nine themes</figcaption>
-        </figure>
-        <figure>
-          <div class="phone"><img src="./img/shot-menu.webp" alt="The Starfuse menu with today’s daily challenge and a 4-day streak." width="580" height="1256" loading="lazy"></div>
-          <figcaption>A new challenge every day</figcaption>
-        </figure>
       </div>
     </section>
 
@@ -169,6 +188,95 @@
         ' in Starfuse and dares you to beat it. Starfuse is coming soon to the App Store.');
       document.getElementById('challenge').hidden = false;
       history.replaceState(null, '', location.pathname + location.hash);
+    })();
+    // The themes showcase: one phone, nine themes. Captures of the game in site/img/themes (README, "The website").
+    (() => {
+      const THEMES = [
+        { id: 'cosmos', name: 'Cosmos', desc: 'The real Solar System, from Stardust all the way to the Sun.', tint: '#e9e4ff', accent: '#7b5cff', alt: 'real planets piled in the jar' },
+        { id: 'candy', name: 'Candy Orbit', desc: 'Pastel planets with happy faces.', tint: '#ffe3f1', accent: '#e4559c', alt: 'smiling pastel planets in a pink sky' },
+        { id: 'squishies', name: 'Squishies', desc: 'Wobbly kawaii sweets, from a sugar star to a rainbow mochi.', tint: '#ffe8ee', accent: '#e94f74', alt: 'mochi, donuts and strawberries in a frosted jar' },
+        { id: 'plushies', name: 'Plushies', desc: 'Soft toys with button eyes, up to a big teddy bear.', tint: '#ffeedd', accent: '#d9762c', alt: 'a koala, a panda, piggies and kittens on a picnic quilt' },
+        { id: 'animals', name: 'Animal Pals', desc: 'From a tiny mouse to the Capybara King.', tint: '#e2f4da', accent: '#3a8f35', alt: 'a lion, a sloth, a red panda and hedgehogs in a sunny meadow' },
+        { id: 'axolotls', name: 'Axolotls', desc: 'Axolotls in every color, up to a glowing one.', tint: '#d9f3fa', accent: '#138cab', alt: 'axolotls of every color under water' },
+        { id: 'pixel', name: 'Pixel Mine', desc: 'Chunky pixel blocks and ores, all the way down to diamond.', tint: '#e3e7f0', accent: '#4c5d80', alt: 'pixel blocks, lava and emerald in a mine' },
+        { id: 'fruits', name: 'Fruit Basket', desc: 'Juicy fruits, up to a prize-winning giant pumpkin.', tint: '#ffe8de', accent: '#d64c2a', alt: 'a watermelon, a pineapple, a dragon fruit and kiwis at a market stall' },
+        { id: 'squeeze', name: 'Squeeze Balls', desc: 'Stress balls in every shape. The wobbliest theme of all.', tint: '#ebe5ff', accent: '#7450ea', alt: 'a fuzzy ball with googly eyes, a gummy bear and squishy cubes' },
+      ];
+      const DURATION = 3800; // ms each theme stays while it moves on by itself
+      const root = document.getElementById('themes');
+      const phone = document.getElementById('themePhone');
+      const picker = document.getElementById('themePicker');
+      const tabs = [...picker.querySelectorAll('[role="tab"]')];
+      const timer = document.getElementById('themeTimer');
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const shots = { cosmos: phone.querySelector('.shot') };
+      let cur = 0, auto = !reduce, inView = false, hovered = false, wait = 0;
+
+      const shot = (t) => {
+        if (!shots[t.id]) {
+          shots[t.id] = Object.assign(new Image(560, 1214), { className: 'shot', src: `./img/themes/${t.id}.webp`,
+            alt: `Starfuse in the ${t.name} theme: ${t.alt}.`, decoding: 'async' });
+          phone.append(shots[t.id]);
+        }
+        return shots[t.id];
+      };
+
+      function show(i, focus = false) {
+        cur = (i + THEMES.length) % THEMES.length;
+        const t = THEMES[cur], img = shot(t);
+        // The new picture fades in once it has loaded, so a quick jump never shows an empty screen.
+        const swap = () => { if (THEMES[cur] === t) for (const [id, el] of Object.entries(shots)) el.classList.toggle('on', id === t.id); };
+        img.complete ? swap() : img.addEventListener('load', swap, { once: true });
+        shot(THEMES[(cur + 1) % THEMES.length]); // the next one, ready in advance
+        tabs.forEach((b, j) => { b.setAttribute('aria-selected', String(j === cur)); b.tabIndex = j === cur ? 0 : -1; });
+        if (focus) tabs[cur].focus();
+        // Keep the chosen chip in view on phones, where the picker scrolls sideways (never scrolls the page).
+        const b = tabs[cur];
+        picker.scrollTo({ left: b.offsetLeft - (picker.clientWidth - b.offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
+        root.style.setProperty('--tint', t.tint);
+        root.style.setProperty('--accent', t.accent);
+        document.getElementById('themeName').textContent = t.name;
+        document.getElementById('themeDesc').textContent = t.desc;
+        Object.assign(document.getElementById('themeChain'), { src: `./img/themes/${t.id}-chain.webp`, alt: `The eleven ${t.name} characters, smallest to biggest.` });
+        run();
+      }
+
+      // Moving on by itself: only on screen, not under the mouse, and never again once someone picks a theme.
+      function run() {
+        clearTimeout(wait);
+        timer.classList.remove('run');
+        root.classList.toggle('manual', !auto);
+        if (!auto || !inView || hovered) return;
+        void timer.offsetWidth; // restart the bar's animation
+        timer.style.animationDuration = `${DURATION}ms`;
+        timer.classList.add('run');
+        wait = setTimeout(() => show(cur + 1), DURATION);
+      }
+      const pick = (i, focus) => { auto = false; show(i, focus); };
+
+      tabs.forEach((b, i) => b.addEventListener('click', () => pick(i)));
+      picker.addEventListener('keydown', (e) => {
+        const to = { ArrowRight: cur + 1, ArrowDown: cur + 1, ArrowLeft: cur - 1, ArrowUp: cur - 1, Home: 0, End: THEMES.length - 1 }[e.key];
+        if (to === undefined) return;
+        e.preventDefault();
+        pick(to, true);
+      });
+      document.getElementById('themePrev').addEventListener('click', () => pick(cur - 1));
+      document.getElementById('themeNext').addEventListener('click', () => pick(cur + 1));
+      // A sideways swipe on the phone changes the theme.
+      let downX = null;
+      phone.addEventListener('pointerdown', (e) => { downX = e.clientX; });
+      phone.addEventListener('pointerup', (e) => {
+        if (downX === null) return;
+        const dx = e.clientX - downX;
+        downX = null;
+        if (Math.abs(dx) > 40) pick(cur + (dx < 0 ? 1 : -1));
+      });
+      const showcase = root.querySelector('.showcase');
+      showcase.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { hovered = true; run(); } });
+      showcase.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { hovered = false; run(); } });
+      new IntersectionObserver(([entry]) => { inView = entry.isIntersecting; run(); }, { threshold: 0.4 }).observe(showcase);
+      show(0);
     })();
     // The game used to run here with an offline service worker; let go of it (sw.js clears its caches too).
     navigator.serviceWorker?.getRegistrations?.().then((list) => list.forEach((r) => r.unregister())).catch(() => {});
